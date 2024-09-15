@@ -59,8 +59,13 @@ subprojects {
         }
         maven { url "https://maven.minecraftforge.net/" }
         maven { url 'https://jitpack.io' }
-        flatDir{
-            dir 'libs'
+        maven {
+            name = 'GeckoLib'
+            url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            content {
+                includeGroupByRegex("software\\.bernie.*")
+                includeGroup("com.eliotlash.mclib")
+            }
         }
     }
 
@@ -130,11 +135,6 @@ subprojects {
         }
     }
 
-}
-
-task publishMeEverywhere(){
-    dependsOn ":forge:publishUnified"
-    dependsOn ":fabric:publishUnified"
 }
 
 apply plugin: 'org.jetbrains.gradle.plugin.idea-ext'

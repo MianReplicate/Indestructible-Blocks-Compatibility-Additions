@@ -4,7 +4,7 @@
   "package": "mc.mian.indestructible_blocks_compat.mixin",
   "compatibilityLevel": "JAVA_${java_version}",
   "mixins": [
-    "AltarBlockMixin"
+
   ],
   "client": [
   ],

@@ -101,8 +101,6 @@ architectury {
 }
 
 dependencies {
-    implementation project(path: ':common')
-
     // thanks sodium for adding forge support, very cool :>
 
     if(loomPlatform == 'fabric') {
@@ -112,12 +110,15 @@ dependencies {
         implementation 'com.electronwill.night-config:core:3.6.3'
         implementation 'com.electronwill.night-config:toml:3.6.3'
 
+        modRuntimeOnly "mc.mian:indestructible_blocks:${indestructible_blocks_version}+${minecraft_version}-fabric"
         modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
         include "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
 
         modRuntimeOnly("curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_fabric}")
         modRuntimeOnly("curse.maven:attributefix-${attributefix_version}:${attributefix_fabric}")
-        modRuntimeOnly("curse.maven:geckolib-${geckolib_version}:${geckolib_fabric}")
+        modRuntimeOnly("curse.maven:projectile_damage-${projectile_damage_version}:${projectile_damage_fabric}")
+        modRuntimeOnly("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
+        implementation("com.eliotlash.mclib:mclib:20")
         modRuntimeOnly("curse.maven:ranged_weapon_api-${ranged_weapon_api_version}:${ranged_weapon_api_fabric}")
 
         modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-fabric")
@@ -128,9 +129,12 @@ dependencies {
 //        modRuntimeOnly("curse.maven:configured-${configured_id}:${configured_fabric}")
     } else if(loomPlatform == 'forge'){
         forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-        modRuntimeOnly("curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_forge}")
-        modRuntimeOnly("curse.maven:attributefix-${attributefix_version}:${attributefix_forge}")
-        modRuntimeOnly("curse.maven:geckolib-${geckolib_version}:${geckolib_forge}")
+        modRuntimeOnly "mc.mian:indestructible_blocks:${indestructible_blocks_version}+${minecraft_version}-forge"
+//        modRuntimeOnly("curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_forge}")
+//        modRuntimeOnly("curse.maven:attributefix-${attributefix_version}:${attributefix_forge}")
+//        modRuntimeOnly("curse.maven:projectile_damage-${projectile_damage_version}:${projectile_damage_forge}")
+//        modRuntimeOnly("software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}")
+//        implementation("com.eliotlash.mclib:mclib:20")
         // currently broken :<
 //        modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-forge")
 //        runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
@@ -140,7 +144,6 @@ dependencies {
         // disable when doing datagen
 //        runtimeOnly("curse.maven:mousetweaks-${mouse_tweaks_id}:${mouse_tweaks_forge}")
     }
-    modRuntimeOnly "mc.mian:indestructible_blocks:${indestructible_blocks_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowCommon(project(path: ':common', configuration: "transformProduction${projectName}")) { transitive false }

@@ -17,7 +17,7 @@ dependencies {
 
     implementation 'com.electronwill.night-config:core:3.6.3'
     implementation 'com.electronwill.night-config:toml:3.6.3'
-    modImplementation "mc.mian:indestructible_blocks:${indestructible_blocks_version}"
+    modImplementation "mc.mian:indestructible_blocks:${indestructible_blocks_version}+${minecraft_version}-fabric"
     modImplementation "curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_fabric}"
     compileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
     compileOnly "org.spongepowered:mixin:${mixin_version}"
