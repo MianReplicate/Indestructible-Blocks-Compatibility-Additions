@@ -58,7 +58,8 @@ def replaceProperties = [mod_id             : mod_id, mod_name: mod_name, mod_ve
                          mod_license        : mod_license,
                          minecraft_version  : minecraft_version, fabric_loader_version: fabric_loader_version,
                          fabric_api_version : fabric_api_version, repository_url: repository_url,
-                         forge_version_range: forge_version_range, forge_version: forge_version, forge_loader_version_range: forge_loader_version_range
+                         forge_version_range: forge_version_range, forge_version: forge_version, forge_loader_version_range: forge_loader_version_range,
+                         indestructible_blocks_version: indestructible_blocks_version
                             ]
 processResources {
     inputs.properties replaceProperties
@@ -114,6 +115,11 @@ dependencies {
         modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
         include "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
 
+        modRuntimeOnly("curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_fabric}")
+        modRuntimeOnly("curse.maven:attributefix-${attributefix_version}:${attributefix_fabric}")
+        modRuntimeOnly("curse.maven:geckolib-${geckolib_version}:${geckolib_fabric}")
+        modRuntimeOnly("curse.maven:ranged_weapon_api-${ranged_weapon_api_version}:${ranged_weapon_api_fabric}")
+
         modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-fabric")
         modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
         modRuntimeOnly("curse.maven:modernfix-${modern_fix_id}:${modern_fix_fabric}")
@@ -122,7 +128,9 @@ dependencies {
 //        modRuntimeOnly("curse.maven:configured-${configured_id}:${configured_fabric}")
     } else if(loomPlatform == 'forge'){
         forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
+        modRuntimeOnly("curse.maven:soulsweaponry-${mariums_soulslike_weaponry_id}:${mariums_soulslike_weaponry_forge}")
+        modRuntimeOnly("curse.maven:attributefix-${attributefix_version}:${attributefix_forge}")
+        modRuntimeOnly("curse.maven:geckolib-${geckolib_version}:${geckolib_forge}")
         // currently broken :<
 //        modRuntimeOnly("maven.modrinth:sodium:${sodium_version}-forge")
 //        runtimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
@@ -132,6 +140,7 @@ dependencies {
         // disable when doing datagen
 //        runtimeOnly("curse.maven:mousetweaks-${mouse_tweaks_id}:${mouse_tweaks_forge}")
     }
+    modRuntimeOnly "mc.mian:indestructible_blocks:${indestructible_blocks_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowCommon(project(path: ':common', configuration: "transformProduction${projectName}")) { transitive false }

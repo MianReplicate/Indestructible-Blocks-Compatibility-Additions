@@ -59,6 +59,9 @@ subprojects {
         }
         maven { url "https://maven.minecraftforge.net/" }
         maven { url 'https://jitpack.io' }
+        flatDir{
+            dir 'libs'
+        }
     }
 
     tasks.withType(JavaCompile) {

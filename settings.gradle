@@ -15,4 +15,4 @@ include("common")
 include("fabric")
 include("forge")
 
-rootProject.name = "${mod_name}"
+rootProject.name = "Indestructibility Blocks Compatibility" // have to do this manually cuz it dont like :
